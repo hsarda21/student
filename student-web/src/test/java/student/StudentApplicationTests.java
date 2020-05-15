@@ -1,9 +1,10 @@
-package com.college.student;
+package student;
 
+import com.college.student.StudentApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = StudentApplication.class)
 class StudentApplicationTests {
 
     @Test
