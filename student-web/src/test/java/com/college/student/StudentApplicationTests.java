@@ -1,6 +1,5 @@
-package student;
+package com.college.student;
 
-import com.college.student.StudentApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
