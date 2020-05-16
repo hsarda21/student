@@ -14,7 +14,7 @@
     </parent>
     <groupId>com.college</groupId>
     <artifactId>student</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>student</name>
     <description>Student Information</description>
 
@@ -39,7 +39,7 @@
                 <version>3.0.0-M1</version>
                 <configuration>
                     <goals>install</goals>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                     <!-- <autoVersionSubmodules>true</autoVersionSubmodules> -->
                     <checkModificationExcludes>
                         <checkModificationExclude>pom.xml</checkModificationExclude>
                     </checkModificationExcludes>
