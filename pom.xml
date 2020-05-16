@@ -14,7 +14,7 @@
     </parent>
     <groupId>com.college</groupId>
     <artifactId>student</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>student</name>
     <description>Student Information</description>
 
@@ -50,7 +50,7 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:hsarda21/student.git</developerConnection>
-      <tag>student-0.0.2</tag>
+      <tag>student-0.0.1</tag>
   </scm>
 
 </project>
