@@ -49,8 +49,8 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/hsarda21/student.git</developerConnection>
-      <tag>student-0.0.2</tag>
+        <developerConnection>scm:git:git@github.com:hsarda21/student.git</developerConnection>
+      <tag>student-0.0.1</tag>
   </scm>
 
 </project>
