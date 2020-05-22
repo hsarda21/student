@@ -1,6 +1,6 @@
 package com.college.student.model;
 
-public class Stream
+public class Stream extends BaseEntity
 {
     private String streamName;
 
