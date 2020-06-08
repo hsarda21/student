@@ -3,13 +3,13 @@ package com.college.student.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/students")
+@RequestMapping("/teachers")
 @Controller
-public class StudentController
+public class TeacherController
 {
     @RequestMapping({"", "/", "/index", "/index.html"})
-    public String listStudents()
+    public String listTeachers()
     {
-        return "students/index";
+        return "teachers/index";
     }
 }
