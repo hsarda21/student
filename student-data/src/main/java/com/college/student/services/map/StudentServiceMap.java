@@ -1,11 +1,11 @@
 package com.college.student.services.map;
 
 import com.college.student.model.Student;
-import com.college.student.services.CrudService;
+import com.college.student.services.StudentService;
 
 import java.util.Set;
 
-public class StudentServiceMap extends AbstractMapService<Student, Long> implements CrudService<Student, Long>
+public class StudentServiceMap extends AbstractMapService<Student, Long> implements StudentService
 {
     @Override
     public Set<Student> findAll() {
@@ -30,5 +30,10 @@ public class StudentServiceMap extends AbstractMapService<Student, Long> impleme
     @Override
     public void deleteById(Long id) {
         super.deleteById(id);
+    }
+
+    @Override
+    public Student findByLastName(String lastName) {
+        return null;
     }
 }

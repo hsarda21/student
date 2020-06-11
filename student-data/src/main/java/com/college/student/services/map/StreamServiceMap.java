@@ -1,12 +1,11 @@
 package com.college.student.services.map;
 
 import com.college.student.model.Stream;
-import com.college.student.model.Student;
-import com.college.student.services.CrudService;
+import com.college.student.services.StreamService;
 
 import java.util.Set;
 
-public class StreamServiceMap extends AbstractMapService<Stream, Long> implements CrudService<Stream, Long>
+public class StreamServiceMap extends AbstractMapService<Stream, Long> implements StreamService
 {
     @Override
     public Set<Stream> findAll() {
