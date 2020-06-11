@@ -6,5 +6,22 @@
 </head>
 <body>
     <h1 th:text="'List of Teachers'">List of Teachers.</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.id}">1</td>
+            <td th:text="${teacher.firstName}">Default</td>
+            <td th:text="${teacher.lastName}">Value</td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>
