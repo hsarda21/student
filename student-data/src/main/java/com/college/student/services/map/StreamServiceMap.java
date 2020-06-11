@@ -21,7 +21,7 @@ public class StreamServiceMap extends AbstractMapService<Stream, Long> implement
 
     @Override
     public Stream save(Stream object) {
-        return super.save(object.getId(), object);
+        return super.save(object);
     }
 
     @Override
