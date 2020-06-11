@@ -2,9 +2,11 @@ package com.college.student.services.map;
 
 import com.college.student.model.Student;
 import com.college.student.services.StudentService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class StudentServiceMap extends AbstractMapService<Student, Long> implements StudentService
 {
     @Override

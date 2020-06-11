@@ -4,12 +4,8 @@ import com.college.student.model.Student;
 import com.college.student.model.Teacher;
 import com.college.student.services.StudentService;
 import com.college.student.services.TeacherService;
-import com.college.student.services.map.StudentServiceMap;
-import com.college.student.services.map.TeacherServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.sql.SQLOutput;
 
 @Component
 public class DataLoader implements CommandLineRunner
@@ -17,10 +13,10 @@ public class DataLoader implements CommandLineRunner
     private final StudentService studentService;
     private final TeacherService teacherService;
 
-    public DataLoader()
+    public DataLoader(StudentService studentService, TeacherService teacherService)
     {
-        studentService = new StudentServiceMap();
-        teacherService = new TeacherServiceMap();
+        this.studentService = studentService;
+        this.teacherService = teacherService;
     }
 
     @Override
@@ -56,6 +52,6 @@ public class DataLoader implements CommandLineRunner
 
         teacherService.save(teacher2);
 
-        System.out.println("Teachers loaded...");
+        System.out.println("Loaded Teachers...");
     }
 }
