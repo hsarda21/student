@@ -57,6 +57,7 @@ public class DataLoader implements CommandLineRunner
         student1.setCity("Jaipur");
         student1.setPhone("8959851423");
         student1.setStream(btech);
+        student1.getSubjects().add(savedMath);
 
         studentService.save(student1);
 
@@ -67,6 +68,7 @@ public class DataLoader implements CommandLineRunner
         student2.setCity("Jaipur");
         student2.setPhone("6350486269");
         student2.setStream(bca);
+        student2.getSubjects().add(savedOs);
 
         studentService.save(student2);
 

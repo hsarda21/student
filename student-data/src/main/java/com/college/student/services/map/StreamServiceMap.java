@@ -9,6 +9,7 @@ import java.util.Set;
 @Service
 public class StreamServiceMap extends AbstractMapService<Stream, Long> implements StreamService
 {
+
     @Override
     public Set<Stream> findAll() {
         return super.findAll();

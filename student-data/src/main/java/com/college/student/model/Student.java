@@ -1,5 +1,6 @@
 package com.college.student.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Student extends Person
@@ -8,7 +9,7 @@ public class Student extends Person
     private String address;
     private String city;
     private String phone;
-    private Set<Subject> subjects;
+    private Set<Subject> subjects = new HashSet<>();
 
     public Stream getStream() {
         return stream;
