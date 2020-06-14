@@ -1,9 +1,8 @@
 package com.college.student.model;
 
-public class Subject
+public class Subject extends BaseEntity
 {
     String subjectName;
-    Stream stream;
 
     public String getSubjectName() {
         return subjectName;
@@ -13,11 +12,4 @@ public class Subject
         this.subjectName = subjectName;
     }
 
-    public Stream getStream() {
-        return stream;
-    }
-
-    public void setStream(Stream stream) {
-        this.stream = stream;
-    }
 }
