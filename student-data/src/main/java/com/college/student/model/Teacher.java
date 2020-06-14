@@ -1,8 +1,11 @@
 package com.college.student.model;
 
+import java.util.Set;
+
 public class Teacher extends Person
 {
     private Stream stream;
+    private Set<Subject> specialities;
 
     public Stream getStream() {
         return stream;
@@ -10,5 +13,13 @@ public class Teacher extends Person
 
     public void setStream(Stream stream) {
         this.stream = stream;
+    }
+
+    public Set<Subject> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(Set<Subject> specialities) {
+        this.specialities = specialities;
     }
 }
