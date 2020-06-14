@@ -1,22 +1,19 @@
 package com.college.student.services.map;
 
 import com.college.student.model.Student;
-import com.college.student.services.StreamService;
+import com.college.student.model.Subject;
 import com.college.student.services.StudentService;
 import com.college.student.services.SubjectService;
 import org.springframework.stereotype.Service;
 
-import java.security.acl.Owner;
 import java.util.Set;
 
 @Service
 public class StudentServiceMap extends AbstractMapService<Student, Long> implements StudentService
 {
-    private final StreamService streamService;
     private final SubjectService subjectService;
 
-    public StudentServiceMap(StreamService streamService, SubjectService subjectService) {
-        this.streamService = streamService;
+    public StudentServiceMap(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
 
@@ -35,6 +32,13 @@ public class StudentServiceMap extends AbstractMapService<Student, Long> impleme
 
         if(object != null)
         {
+            if(object.getSubjects().size() > 0)
+            {
+                object.getSubjects().forEach(subject -> {
+                    Subject savedSubject = subjectService.save(subject);
+                    subject.setId(savedSubject.getId());
+                });
+            }
             return super.save(object);
         }
         else

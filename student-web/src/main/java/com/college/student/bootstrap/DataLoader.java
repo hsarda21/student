@@ -30,6 +30,15 @@ public class DataLoader implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
+        int count = subjectService.findAll().size();
+
+        if(count == 0)
+        {
+            loadData();
+        }
+    }
+
+    private void loadData() {
         Stream btech = new Stream();
         btech.setStreamName("Bachelors of Technology");
 
@@ -40,10 +49,10 @@ public class DataLoader implements CommandLineRunner
 
         streamService.save(bca);
 
-        Subject math = new Subject();
-        math.setSubjectName("Mathematics");
+        Subject java = new Subject();
+        java.setSubjectName("Java");
 
-        Subject savedMath = subjectService.save(math);
+        Subject savedJava = subjectService.save(java);
 
         Subject os = new Subject();
         os.setSubjectName("Operating System");
@@ -57,7 +66,7 @@ public class DataLoader implements CommandLineRunner
         student1.setCity("Jaipur");
         student1.setPhone("8959851423");
         student1.setStream(btech);
-        student1.getSubjects().add(savedMath);
+        student1.getSubjects().add(savedJava);
 
         studentService.save(student1);
 
@@ -77,12 +86,14 @@ public class DataLoader implements CommandLineRunner
         Teacher teacher1 = new Teacher();
         teacher1.setFirstName("Sanjay");
         teacher1.setLastName("Jain");
+        teacher1.getSpecialities().add(savedJava);
 
         teacherService.save(teacher1);
 
         Teacher teacher2 = new Teacher();
         teacher2.setFirstName("Pooja");
         teacher2.setLastName("Parnami");
+        teacher2.getSpecialities().add(savedOs);
 
         teacherService.save(teacher2);
 

@@ -1,6 +1,8 @@
 package com.college.student.services.map;
 
+import com.college.student.model.Subject;
 import com.college.student.model.Teacher;
+import com.college.student.services.SubjectService;
 import com.college.student.services.TeacherService;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,12 @@ import java.util.Set;
 @Service
 public class TeacherServiceMap extends AbstractMapService<Teacher, Long> implements TeacherService
 {
+    private final SubjectService subjectService;
+
+    public TeacherServiceMap(SubjectService subjectService) {
+        this.subjectService = subjectService;
+    }
+
     @Override
     public Set<Teacher> findAll() {
         return super.findAll();
@@ -21,7 +29,22 @@ public class TeacherServiceMap extends AbstractMapService<Teacher, Long> impleme
 
     @Override
     public Teacher save(Teacher object) {
-        return super.save(object);
+
+        if(object != null)
+        {
+            if(object.getSpecialities().size() > 0)
+            {
+                object.getSpecialities().forEach(speciality -> {
+                    Subject savedSpeciality = subjectService.save(speciality);
+                    speciality.setId(savedSpeciality.getId());
+                });
+            }
+            return super.save(object);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     @Override
