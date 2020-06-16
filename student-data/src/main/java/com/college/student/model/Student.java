@@ -1,14 +1,27 @@
 package com.college.student.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "students")
 public class Student extends Person
 {
+    @Column(name = "stream")
     private Stream stream;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "phone")
     private String phone;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id")
     private Set<Subject> subjects = new HashSet<>();
 
     public Stream getStream() {
