@@ -1,16 +1,15 @@
 package com.college.student.services.springdatajpa;
 
 import com.college.student.model.Stream;
-import com.college.student.model.Student;
 import com.college.student.repositories.StreamRepository;
 import com.college.student.services.StreamService;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+@Service
 @Profile("springdatajpa")
 public class StreamJpaService implements StreamService
 {

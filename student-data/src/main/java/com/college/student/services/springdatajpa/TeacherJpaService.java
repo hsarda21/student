@@ -6,12 +6,12 @@ import com.college.student.repositories.SubjectRepository;
 import com.college.student.repositories.TeacherRepository;
 import com.college.student.services.TeacherService;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+@Service
 @Profile("springdatajpa")
 public class TeacherJpaService implements TeacherService {
     private final TeacherRepository teacherRepository;
