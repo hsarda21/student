@@ -1,9 +1,6 @@
 package com.college.student.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "subjects")
@@ -12,8 +9,8 @@ public class Subject extends BaseEntity
     @Column(name = "name")
     String subjectName;
 
-    @Column(name = "stream")
     @ManyToOne
+    @JoinColumn(name = "stream_id")
     Stream stream;
 
     public String getSubjectName() {
