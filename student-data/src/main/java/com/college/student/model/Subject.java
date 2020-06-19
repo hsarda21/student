@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class Subject extends BaseEntity
 {
     @Column(name = "name")
-    String subjectName;
+    private String subjectName;
 
     @ManyToOne
     @JoinColumn(name = "stream_id")
-    Stream stream;
+    private Stream stream;
 
     public String getSubjectName() {
         return subjectName;

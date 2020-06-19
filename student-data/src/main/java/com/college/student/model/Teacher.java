@@ -8,7 +8,8 @@ import java.util.Set;
 @Table(name = "teachers")
 public class Teacher extends Person
 {
-    @Column(name = "stream")
+    @ManyToOne
+    @JoinColumn(name = "stream_id")
     private Stream stream;
 
     @Column(name = "specialities")

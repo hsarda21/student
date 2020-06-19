@@ -8,7 +8,8 @@ import java.util.Set;
 @Table(name = "students")
 public class Student extends Person
 {
-    @Column(name = "stream")
+    @ManyToOne
+    @JoinColumn(name = "stream_id")
     private Stream stream;
 
     @Column(name = "address")
@@ -20,7 +21,7 @@ public class Student extends Person
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "subject_id")
     private Set<Subject> subjects = new HashSet<>();
 

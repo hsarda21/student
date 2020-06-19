@@ -1,5 +1,6 @@
 package com.college.student.services.springdatajpa;
 
+import com.college.student.model.Stream;
 import com.college.student.model.Student;
 import com.college.student.model.Subject;
 import com.college.student.repositories.StreamRepository;
@@ -38,6 +39,7 @@ public class SubjectJpaService implements SubjectService
 
     @Override
     public Subject save(Subject object) {
+        object.getStream().getSubjects().add(object);
         return subjectRepository.save(object);
     }
 

@@ -4,16 +4,18 @@ import com.college.student.model.Student;
 import com.college.student.model.Subject;
 import com.college.student.services.StudentService;
 import com.college.student.services.SubjectService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class StudentServiceMap extends AbstractMapService<Student, Long> implements StudentService
+@Profile({"default","map"})
+public class StudentMapService extends AbstractMapService<Student, Long> implements StudentService
 {
     private final SubjectService subjectService;
 
-    public StudentServiceMap(SubjectService subjectService) {
+    public StudentMapService(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
 
@@ -39,6 +41,7 @@ public class StudentServiceMap extends AbstractMapService<Student, Long> impleme
                     subject.setId(savedSubject.getId());
                 });
             }
+            object.getStream().getStudents().add(object);
             return super.save(object);
         }
         else

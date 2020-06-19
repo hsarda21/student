@@ -42,20 +42,22 @@ public class DataLoader implements CommandLineRunner
         Stream btech = new Stream();
         btech.setStreamName("Bachelors of Technology");
 
-        streamService.save(btech);
+        Stream savedbtech = streamService.save(btech);
 
         Stream bca = new Stream();
         bca.setStreamName("Bachelors of Computer Administration");
 
-        streamService.save(bca);
+        Stream savedbca = streamService.save(bca);
 
         Subject java = new Subject();
         java.setSubjectName("Java");
+        java.setStream(savedbtech);
 
         Subject savedJava = subjectService.save(java);
 
         Subject os = new Subject();
         os.setSubjectName("Operating System");
+        os.setStream(savedbca);
 
         Subject savedOs = subjectService.save(os);
 
@@ -86,6 +88,7 @@ public class DataLoader implements CommandLineRunner
         Teacher teacher1 = new Teacher();
         teacher1.setFirstName("Sanjay");
         teacher1.setLastName("Jain");
+        teacher1.setStream(savedbtech);
         teacher1.getSpecialities().add(savedJava);
 
         teacherService.save(teacher1);
@@ -93,6 +96,7 @@ public class DataLoader implements CommandLineRunner
         Teacher teacher2 = new Teacher();
         teacher2.setFirstName("Pooja");
         teacher2.setLastName("Parnami");
+        teacher2.setStream(savedbca);
         teacher2.getSpecialities().add(savedOs);
 
         teacherService.save(teacher2);

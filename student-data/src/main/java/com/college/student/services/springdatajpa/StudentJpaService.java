@@ -46,6 +46,7 @@ public class StudentJpaService implements StudentService
 
     @Override
     public Student save(Student object) {
+        object.getStream().getStudents().add(object);
         return studentRepository.save(object);
     }
 

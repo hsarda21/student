@@ -44,6 +44,7 @@ public class TeacherJpaService implements TeacherService {
 
     @Override
     public Teacher save(Teacher object) {
+        object.getStream().getTeachers().add(object);
         return teacherRepository.save(object);
     }
 
