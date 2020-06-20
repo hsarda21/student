@@ -1,7 +1,14 @@
 package com.college.student.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "subjects")
 public class Subject extends BaseEntity
@@ -12,20 +19,4 @@ public class Subject extends BaseEntity
     @ManyToOne
     @JoinColumn(name = "stream_id")
     private Stream stream;
-
-    public String getSubjectName() {
-        return subjectName;
-    }
-
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
-    }
-
-    public Stream getStream() {
-        return stream;
-    }
-
-    public void setStream(Stream stream) {
-        this.stream = stream;
-    }
 }

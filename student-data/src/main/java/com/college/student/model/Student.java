@@ -1,13 +1,30 @@
 package com.college.student.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "students")
 public class Student extends Person
 {
+    @Builder
+    public Student(Long id, String firstName, String lastName, String gender,
+                   Stream stream, String address, String city, String phone, Set<Subject> subjects) {
+        super(id, firstName, lastName, gender);
+        this.stream = stream;
+        this.address = address;
+        this.city = city;
+        this.phone = phone;
+        this.subjects = subjects;
+    }
+
     @ManyToOne
     @JoinColumn(name = "stream_id")
     private Stream stream;
@@ -25,43 +42,4 @@ public class Student extends Person
     @JoinColumn(name = "subject_id")
     private Set<Subject> subjects = new HashSet<>();
 
-    public Stream getStream() {
-        return stream;
-    }
-
-    public void setStream(Stream stream) {
-        this.stream = stream;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Set<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Set<Subject> subjects) {
-        this.subjects = subjects;
-    }
 }
