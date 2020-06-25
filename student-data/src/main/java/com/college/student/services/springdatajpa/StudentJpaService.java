@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -58,5 +59,10 @@ public class StudentJpaService implements StudentService
     @Override
     public void deleteById(Long aLong) {
         studentRepository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Student> findAllByLastNameLike(String lastName) {
+        return studentRepository.findAllByLastNameLike(lastName);
     }
 }
