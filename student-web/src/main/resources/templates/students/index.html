@@ -16,12 +16,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="student : ${students}">
+        <tr th:each="student : ${students}" th:onclick="'javascript:rowClicked(\'' + ${student.id} + '\');'" style="cursor: pointer;">
             <td th:text="${student.id}">1</td>
             <td th:text="${student.firstName}">Default</td>
             <td th:text="${student.lastName}">Value</td>
         </tr>
     </tbody>
 </table>
+
+<script>
+    function rowClicked(id)
+    {
+        location.href = "/students/" + id;
+    }
+</script>
 </body>
 </html>

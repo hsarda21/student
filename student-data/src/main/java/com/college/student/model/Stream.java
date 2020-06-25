@@ -26,4 +26,5 @@ public class Stream extends BaseEntity
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stream")
     private Set<Subject> subjects = new HashSet<>();
+
 }
