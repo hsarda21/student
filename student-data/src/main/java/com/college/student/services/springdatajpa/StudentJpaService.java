@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -47,7 +46,9 @@ public class StudentJpaService implements StudentService
 
     @Override
     public Student save(Student object) {
-        object.getStream().getStudents().add(object);
+        if(object.getStream()!=null) {
+            object.getStream().getStudents().add(object);
+        }
         return studentRepository.save(object);
     }
 

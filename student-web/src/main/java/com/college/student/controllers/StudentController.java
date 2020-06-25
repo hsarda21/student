@@ -6,18 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/students")
 @Controller
 public class StudentController
 {
+    private static final String VIEWS_STUDENT_CREATE_OR_UPDATE_FORM = "students/createOrUpdateStudentForm";
+
     private final StudentService studentService;
 
     public StudentController(StudentService studentService)
@@ -31,8 +31,46 @@ public class StudentController
         dataBinder.setDisallowedFields("id");
     }
 
+    @GetMapping("/new")
+    public String initCreationForm(Model model) {
+        Student student = Student.builder().build();
+        model.addAttribute("student", student);
+        return VIEWS_STUDENT_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/new")
+    public String processCreationForm(@Valid Student student, BindingResult result) {
+        if (result.hasErrors()) {
+            return VIEWS_STUDENT_CREATE_OR_UPDATE_FORM;
+        }
+        else {
+            Student savedStudent = studentService.save(student);
+            return "redirect:/students/" + savedStudent.getId();
+        }
+    }
+
+    @GetMapping("/{studentId}/edit")
+    public String initUpdateStudentForm(@PathVariable("studentId") Long studentId, Model model) {
+        Student student = studentService.findById(studentId);
+        model.addAttribute(student);
+        return VIEWS_STUDENT_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/{studentId}/edit")
+    public String processUpdateStudentForm(@Valid Student student, BindingResult result,
+                                         @PathVariable("studentId") Long studentId) {
+        if (result.hasErrors()) {
+            return VIEWS_STUDENT_CREATE_OR_UPDATE_FORM;
+        }
+        else {
+            student.setId(studentId);
+            Student savedStudent = studentService.save(student);
+            return "redirect:/students/" + savedStudent.getId();
+        }
+    }
+
     @RequestMapping("/find")
-    public String findStudents(Model model)
+    public String initFindForm(Model model)
     {
         model.addAttribute("student",Student.builder().build());
         return "students/findStudents";
@@ -47,7 +85,7 @@ public class StudentController
         }
 
         // find students by last name
-        List<Student> results = studentService.findAllByLastNameLike(student.getLastName());
+        List<Student> results = studentService.findAllByLastNameLike("%" + student.getLastName() + "%");
 
         if (results.isEmpty()) {
             // no students found
@@ -67,7 +105,7 @@ public class StudentController
     }
 
     @GetMapping("/{studentId}")
-    public ModelAndView showOwner(@PathVariable("studentId") Long studentId) {
+    public ModelAndView showStudent(@PathVariable("studentId") Long studentId) {
         ModelAndView mav = new ModelAndView("students/studentDetails");
         mav.addObject(studentService.findById(studentId));
         return mav;
