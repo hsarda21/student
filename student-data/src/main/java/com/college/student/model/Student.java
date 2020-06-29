@@ -38,8 +38,7 @@ public class Student extends Person
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "subject_id")
+    @ManyToMany(mappedBy = "students")
     private Set<Subject> subjects = new HashSet<>();
 
 }

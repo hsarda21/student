@@ -3,6 +3,8 @@ package com.college.student.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -19,4 +21,9 @@ public class Subject extends BaseEntity
     @ManyToOne
     @JoinColumn(name = "stream_id")
     private Stream stream;
+
+    @ManyToMany
+    @JoinTable(name = "subject_student", joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name  = "student_id"))
+    private Set<Student> students = new HashSet<>();
 }

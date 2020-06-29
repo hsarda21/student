@@ -34,6 +34,13 @@ public class StreamJpaService implements StreamService
 
     @Override
     public Stream save(Stream object) {
+        for(Stream stream : streamRepository.findAll())
+        {
+            if(stream.getStreamName().equalsIgnoreCase(object.getStreamName()))
+            {
+                return stream;
+            }
+        }
         return streamRepository.save(object);
     }
 

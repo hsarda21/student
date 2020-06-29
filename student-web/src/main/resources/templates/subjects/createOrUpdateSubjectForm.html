@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'students')}">
+
+<body>
+
+<h2>Add Subject</h2>
+
+<b>Student</b>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:text="${student.firstName + ' ' + student.lastName}" ></td>
+        <td th:text="${student.address}" ></td>
+        <td th:text="${student.city}" ></td>
+        <td th:text="${student.phone}" ></td>
+    </tr>
+</table>
+
+<form th:object="${subject}" class="form-horizontal" method="post">
+    <div class="form-group has-feedback">
+        <input th:replace="~{fragments/inputField :: input ('Subject Name', 'subjectName', 'text')}"  />
+        <input th:replace="~{fragments/inputField :: input ('Stream', 'stream', 'text')}" />
+        <span th:if="${#fields.hasErrors('stream')}" style = "color:#ab362e; padding-left: 200px;">Please enter a valid stream</span>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <!--<input type="hidden" name="studentId" th:value="${student.id}" />-->
+            <button class="btn btn-default" type="submit">Add Subject</button>
+        </div>
+    </div>
+</form>
+
+<br />
+<b>Other Subjects</b>
+<table class="table table-striped">
+    <tr>
+        <th>Subject Name</th>
+        <th>Stream</th>
+    </tr>
+    <tr th:if="${!subject['new']}" th:each="subject : ${student.subjects}">
+        <td th:text="${subject.subjectName}" ></td>
+        <td th:text=" ${subject.stream.streamName}" ></td>
+    </tr>
+</table>
+
+</body>
+</html>

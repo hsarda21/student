@@ -49,6 +49,7 @@ public class StudentJpaService implements StudentService
         if(object.getStream()!=null) {
             object.getStream().getStudents().add(object);
         }
+        object.getSubjects().forEach(subject -> subject.getStudents().add(object));
         return studentRepository.save(object);
     }
 

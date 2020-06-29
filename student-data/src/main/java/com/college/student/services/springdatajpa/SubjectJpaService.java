@@ -40,6 +40,11 @@ public class SubjectJpaService implements SubjectService
     @Override
     public Subject save(Subject object) {
         object.getStream().getSubjects().add(object);
+
+        if(object.getStudents()!=null)
+        {
+            object.getStudents().forEach(student -> student.getSubjects().add(object));
+        }
         return subjectRepository.save(object);
     }
 

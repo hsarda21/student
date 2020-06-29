@@ -1,6 +1,8 @@
 package com.college.student.controllers;
 
+import com.college.student.model.Stream;
 import com.college.student.model.Student;
+import com.college.student.services.StreamService;
 import com.college.student.services.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 
 @RequestMapping("/students")
@@ -19,16 +22,23 @@ public class StudentController
     private static final String VIEWS_STUDENT_CREATE_OR_UPDATE_FORM = "students/createOrUpdateStudentForm";
 
     private final StudentService studentService;
+    private final StreamService streamService;
 
-    public StudentController(StudentService studentService)
+    public StudentController(StudentService studentService, StreamService streamService)
     {
         this.studentService = studentService;
+        this.streamService = streamService;
     }
 
     @InitBinder
     public void setDisallowedFields(WebDataBinder dataBinder)
     {
         dataBinder.setDisallowedFields("id");
+    }
+
+    @ModelAttribute("streams")
+    public Collection<Stream> populateStreams() {
+        return streamService.findAll();
     }
 
     @GetMapping("/new")
@@ -63,9 +73,17 @@ public class StudentController
             return VIEWS_STUDENT_CREATE_OR_UPDATE_FORM;
         }
         else {
-            student.setId(studentId);
-            Student savedStudent = studentService.save(student);
-            return "redirect:/students/" + savedStudent.getId();
+            Student realStudent = studentService.findById(studentId);
+            realStudent.setPhone(student.getPhone());
+            realStudent.setCity(student.getCity());
+            realStudent.setAddress(student.getAddress());
+            realStudent.setFirstName(student.getFirstName());
+            realStudent.setLastName(student.getLastName());
+            Stream newStream = streamService.save(student.getStream());
+            realStudent.setStream(newStream);
+            newStream.getStudents().add(realStudent);
+            studentService.save(realStudent);
+            return "redirect:/students/" + realStudent.getId();
         }
     }
 
